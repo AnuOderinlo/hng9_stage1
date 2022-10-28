@@ -1,10 +1,12 @@
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const express = require("express");
 const bioRouter = require("./routes/route");
 const app = express();
 
 dotenv.config({ path: "./config.env" });
+app.use(cors());
 
 app.use(express.json());
 
