@@ -21,3 +21,29 @@ exports.introController = (req, res) => {
     console.log(error);
   }
 };
+
+exports.evaluate = (req, res) => {
+  try {
+    const { operation_type, x, y } = req.body;
+    let result;
+    if (operation_type === "addition") {
+      result = x + y;
+    } else if (operation_type === "subtraction") {
+      result = x - y;
+    } else if (operation_type === "multiplication") {
+      result = x * y;
+    }
+
+    res.status(200).json({
+      slackUsername: "AnuEze",
+      result: result,
+      operation_type: operation_type,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      status: "failed",
+      error,
+    });
+  }
+};
